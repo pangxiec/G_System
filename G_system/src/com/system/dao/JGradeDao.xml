@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.system.dao.JGradeDao" >
+ 
+    <!-- 查询全部成绩 -->
+    <select id="findAllJgrade" parameterType="jgrade" resultType="jgrade">
+	    SELECT * FROM grade_j
+    </select>
+    
+    <select id="findAll" parameterType="jgrade" resultType="jgrade">
+	    SELECT * FROM grade_j
+    </select>
+    
+    
+    <!-- 通过id查询 -->
+    <select id="getGradeById" parameterType="integer" resultType="jgrade">
+       SELECT * FROM grade_j WHERE stuid=#{stuid}
+    </select>
+    
+    <!-- 查询不及格人数 -->
+    <select id="findnotpass" parameterType="jgrade" resultType="jgrade">
+       SELECT stuid, sname, javagrade FROM grade_j
+       WHERE javagrade &lt; 60
+    </select>
+    
+    <select id="getvalue" parameterType="integer" resultType="jgrade">
+       SELECT * FROM grade_j WHERE stuid=#{stuid}
+    </select>
+    
+    <!-- 新建 -->
+    <insert id="creatGrade" parameterType="jgrade">
+       INSERT INTO grade_j(stuid,sname,javagrade1,javagrade2,javagrade3,javagrade)
+       VALUES(#{stuid},#{sname},#{javagrade1},#{javagrade2},#{javagrade3},#{javagrade})
+    </insert>
+    
+    <!-- 删除 -->
+    <delete id="deletegrade" parameterType="integer">
+       DELETE  FROM grade_j WHERE stuid=#{stuid}
+    </delete>
+    
+    <!-- 更新 -->
+    <update id="updategrade" parameterType="jgrade">
+       update grade_j
+       <set>
+          <if test="sname!=null">
+             sname = #{sname},
+          </if>
+          <if test="javagrade1!=null">
+             javagrade1 = #{javagrade1},
+          </if>
+          <if test="javagrade2!=null">
+             javagrade2 = #{javagrade2},
+          </if>
+          <if test="javagrade3!=null">
+             javagrade3 = #{javagrade3},
+          </if>
+          <if test="javagrade!=null">
+             javagrade = #{javagrade},
+          </if>
+       </set>
+       WHERE stuid=#{stuid} 
+<!--        UPDATE grade_j SET 
+              javagrade1 = #{javagrade1} ,
+              javagrade2 = #{javagrade2}, 
+              javagrade3 = #{javagrade3}, 
+              javagrade  = #{javagrade} 
+              WHERE stuid=#{stuid} -->
+    </update>
+    
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.system.dao.UserDao" >
+    <!-- 查询用户 -->
+    <select id="findAdminUser" parameterType="String" resultType="user">
+	    select * from user
+        where usercode = #{usercode}
+        and password = #{password}
+        and state = '1'
+        and permissions = 'a'
+    </select>
+    
+    <select id="findOrdinaryUser" parameterType="String" resultType="user">
+         select * from user
+        where usercode = #{usercode}
+        and password = #{password}
+        and state = '1'
+        and permissions = 'b'
+    </select>
+    
+</mapper>

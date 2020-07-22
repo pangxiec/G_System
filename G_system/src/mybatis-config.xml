@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 别名定义 -->
+	<typeAliases>
+		<package name="com.system.po" />
+	</typeAliases>	   
+	
+	 <!-- 配置mybatis的分页插件PageHelper -->
+     <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+        </plugin>
+     </plugins> 
+    
+</configuration>
+
